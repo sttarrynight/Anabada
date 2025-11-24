@@ -14,9 +14,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		System.out.println("============================================");
+		System.out.println("=================================================");
 		System.out.println("   ANABADA 중고거래 플랫폼에 오신 것을 환영합니다!");
-		System.out.println("============================================");
+		System.out.println("=================================================");
 		
 		MemberController memberController = new MemberController();
 		
