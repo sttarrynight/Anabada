@@ -54,8 +54,7 @@ public class ProductDAO {
 		String sql = "select p.*, m.username as seller_name "
 				+ "from products p "
 				+ "join members m on p.seller_id = m.user_id "
-				+ "where product_id = ? "
-				+ "order by created_at desc";
+				+ "where product_id = ? ";
 		
 		ProductDTO product = null;
 		
@@ -115,7 +114,7 @@ public class ProductDAO {
 			st.setString(1, product.getTitle());
 			st.setString(2, product.getDescription());
 			st.setInt(3, product.getPrice());
-			st.setInt(4, product.getSeller_id());
+			st.setInt(4, product.getProduct_id());
 			
 			result = st.executeUpdate();
 			
@@ -167,7 +166,7 @@ public class ProductDAO {
 					+ "join members m on p.seller_id = m.user_id "
 					+ "where p.seller_id = ? "
 					+ "and p.status = ? "
-					+ "order by created_at desc";
+					+ "order by nvl(p.updated_at,p.created_at) desc";
 		
 		List<ProductDTO> productList = new ArrayList<>();
 		
@@ -201,7 +200,7 @@ public class ProductDAO {
 					+ "from products p "
 					+ "join members m on p.seller_id = m.user_id "
 					+ "where p.seller_id = ? "
-					+ "order by created_at desc";
+					+ "order by nvl(p.updated_at,p.created_at) desc";
 		
 		List<ProductDTO> productList = new ArrayList<>();
 		
@@ -233,8 +232,8 @@ public class ProductDAO {
 		String sql = "select p.*, m.username as seller_name "
 					+ "from products p "
 					+ "join members m on p.seller_id = m.user_id "
-					+ "where status = ? "
-					+ "order by created_at desc";
+					+ "where p.status = ? "
+					+ "order by nvl(p.updated_at,p.created_at) desc";
 		
 		List<ProductDTO> productList = new ArrayList<>();
 		
@@ -266,8 +265,7 @@ public class ProductDAO {
 		String sql = "select p.*, m.username as seller_name "
 				+ "from products p "
 				+ "join members m on p.seller_id = m.user_id "
-				+ "where product_id = ? "
-				+ "order by created_at desc";
+				+ "where product_id = ? ";
 		
 		ProductDTO product = null;
 		
@@ -295,10 +293,10 @@ public class ProductDAO {
 		Statement st = null;
 		ResultSet rs = null;
 		
-		String sql = "select p.*, m.usrename as seller_name "
+		String sql = "select p.*, m.username as seller_name "
 				+ "from products p "
 				+ "join members m on p.seller_id = m.user_id "
-				+ "order by created_at desc";
+				+ "order by p.created_at desc";
 		
 		List<ProductDTO> productList = new ArrayList<>();
 		

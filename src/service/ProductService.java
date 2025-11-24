@@ -85,19 +85,23 @@ public class ProductService {
 		
 		//3.판매완료된 상품은 수정 불가
 		if(product.getStatus() == ProductStatus.SOLD) {
-			System.out.println("판매완료된 상품은 수정할 수 없습니다.");
+			System.out.println("[알림] 판매완료된 상품은 수정할 수 없습니다.");
 			return false;
 		}
 		
 		//4.유효성 검증
-		if(title == null || title.trim().isEmpty()) {
-			System.out.println("[알림] 상품명을 입력해주세요.");
-			return false;
-		}
-		
 		if(price <= 0) {
 			System.out.println("[알림] 가격은 0보다 커야 합니다.");
 			return false;
+		}
+		
+		//수정하려는 값이 없을 때 기존 값 넣기
+		if(title == null || title.trim().isEmpty()) {
+			title = product.getTitle();
+		}
+		
+		if(description == null || description.trim().isEmpty()) {
+			description = product.getDescription();
 		}
 		
 		//5.상품 수정

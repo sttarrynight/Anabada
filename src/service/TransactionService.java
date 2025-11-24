@@ -35,17 +35,17 @@ public class TransactionService {
 			//1.상품 정보 조회
 			ProductDTO product = productDAO.selectById(conn, productId);
 			if(product == null) {
-				throw new Exception("[알림] 존재하지 않는 상품입니다.");
+				throw new Exception("존재하지 않는 상품입니다.");
 			}
 			
 			//2.상품 상태 확인
 			if(product.getStatus() == ProductStatus.SOLD) {
-				throw new Exception("[알림] 이미 판매완료된 상품입니다.");
+				throw new Exception("이미 판매완료된 상품입니다.");
 			}
 			
 			//3.본인 상품 구매 방지
 			if(product.getSeller_id() == buyerId) {
-				throw new Exception("[알림] 본인의 상품은 구매할 수 없습니다.");
+				throw new Exception("본인의 상품은 구매할 수 없습니다.");
 			}
 			
 			//4.구매자/판매자 정보 조회
@@ -53,14 +53,14 @@ public class TransactionService {
 			MemberDTO seller = memberDAO.selectById(conn, product.getSeller_id());
 			
 			if(buyer == null || seller == null) {
-				throw new Exception("[알림] 사용자 정보를 찾을 수 없습니다.");
+				throw new Exception("사용자 정보를 찾을 수 없습니다.");
 			}
 			
 			int price = product.getPrice();
 			
 			//5.구매자 잔액 확인
 			if(buyer.getPoint_balance() < price) {
-				throw new Exception("[알림] 잔액이 부족합니다. 상품 금액: " + price + "원, 현재 잔액: " + buyer.getPoint_balance() + "원");
+				throw new Exception("잔액이 부족합니다. 상품 금액: " + price + "원, 현재 잔액: " + buyer.getPoint_balance() + "원");
 			}
 			
 			//6.구매자 포인트 차감
@@ -68,7 +68,7 @@ public class TransactionService {
 			int buyerNewBalance = buyer.getPoint_balance() - price;
 			
 			//7.판매자 포인트 증가
-			memberDAO.updatePoint(conn, product.getSeller_id(), -price);
+			memberDAO.updatePoint(conn, product.getSeller_id(), price);
 			int sellerNewBalance = seller.getPoint_balance() + price;
 			
 			//8.상품 상태 변경(판매중 -> 판매완료)

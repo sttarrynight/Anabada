@@ -25,16 +25,16 @@ public class ProductView {
 	//상품 목록
 	public static void printProductList(List<ProductDTO> productList) {
 		if(productList == null || productList.isEmpty()) {
-			System.out.println("\n조회된 상품이 없습니다.");
+			System.out.println("\n[알림] 조회된 상품이 없습니다.");
 			return;
 		}
 		
 		System.out.println("\n========== 상품 목록 ==========");
-		System.out.printf("%-5s %-15s %-10s %-10s %-10s%n", "ID", "상품명", "가격", "판매자", "상태");
+		System.out.printf("%-5s %-20s %-10s %-12s %-10s%n", "ID", "상품명", "가격", "판매자", "상태");
 		System.out.println("-------------------------------------------------------------");
 		
 		for(ProductDTO product : productList) {
-			System.out.printf("%-5d %-15s %-10d %-10s %-10s%n",
+			System.out.printf("%-5d %-20s %-10d %-12s %-10s%n",
 					product.getProduct_id(),
 					CommonUtil.truncate(product.getTitle(), 15),
 					product.getPrice(),
@@ -42,7 +42,7 @@ public class ProductView {
 					product.getStatus().getDescription());
 		}
 		
-		System.out.println("=================================================================");
+		System.out.println("=============================================================");
 		System.out.println("총 " + productList.size() + "개의 상품");
 	}
 	

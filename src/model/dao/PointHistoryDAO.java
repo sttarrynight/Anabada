@@ -61,8 +61,8 @@ public class PointHistoryDAO {
 		String sql = "select p.*, m.username as username "
 				+ "from point_history p "
 				+ "join members m on p.user_id = m.user_id "
-				+ "where p.user_id = ? and transaction_type = ? "
-				+ "order by created_at desc";
+				+ "where p.user_id = ? and p.transaction_type = ? "
+				+ "order by p.created_at desc";
 			
 		List<PointHistoryDTO> pointHistoryList = new ArrayList<>();
 			
@@ -97,7 +97,7 @@ public class PointHistoryDAO {
 				+ "from point_history p "
 				+ "join members m on p.user_id = m.user_id "
 				+ "where p.user_id = ? "
-				+ "order by created_at desc";
+				+ "order by p.created_at desc";
 			
 		List<PointHistoryDTO> pointHistoryList = new ArrayList<>();
 			

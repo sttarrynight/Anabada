@@ -29,7 +29,7 @@ public class TransactionView {
 		System.out.println("-------------------------------------------------------------------------------");
 		
 		for(TransactionDTO transaction : transactionList) {
-			System.out.printf("%-5d %-15s %,10d %-10s %-10s %-20s%n",
+			System.out.printf("%-5d %-12s %,-11d %-10s %-10s %-20s%n",
 					transaction.getTransaction_id(),
 					CommonUtil.truncate(transaction.getProduct_title(), 15),
 					transaction.getAmount(),
@@ -39,7 +39,7 @@ public class TransactionView {
 		}
 		
 		System.out.println("===============================================================================");
-		System.out.println("[알림] 총 " + transactionList.size() + "건의 거래");
+		System.out.println("총 " + transactionList.size() + "건의 거래");
 	}
 	
 }

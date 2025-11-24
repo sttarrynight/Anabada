@@ -98,7 +98,7 @@ public class MemberController {
 		String passwordConfirm = CommonUtil.getString("비밀번호 확인: ");
 		
 		if(!password.equals(passwordConfirm)) {
-			System.out.println("비밀번호가 일치하지 않습니다.");
+			System.out.println("[알림] 비밀번호가 일치하지 않습니다.");
 			return;
 		}
 		

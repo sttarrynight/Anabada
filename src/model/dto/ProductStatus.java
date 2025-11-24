@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ProductStatus {
 
-	SALE("SALE", "판매중"), 
-	SOLD("SOLD", "판매완료");
+	SALE("SALE", "[판매중]"), 
+	SOLD("SOLD", "[판매완료]");
 	
 	 private final String code;      // DB에 저장되는 값
 	 private final String description;  // 화면에 표시되는 값
